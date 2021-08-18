@@ -1,4 +1,4 @@
-name: SonarQube Scan
+name: CI PIPELINE
 on:
   push:
     branches:
@@ -6,8 +6,17 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn global add eslint
+      - name: Run ESLint
+        run: eslint . --ext .js,.jsx,.ts,.tsx
   sonarcloud:
     name: SonarCloud
+    needs: eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
