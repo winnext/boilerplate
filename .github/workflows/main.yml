@@ -14,8 +14,10 @@ jobs:
         run: yarn
       - name: Install ESLINT
         run: yarn global add eslint
-      - name: Run ESLint
-        run: eslint . --ext .js,.jsx,.ts,.tsx
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-check
+          eslint_flags: '. --ext .ts,.tsx'
   sonarcloud:
     name: SonarCloud
     needs: eslint
