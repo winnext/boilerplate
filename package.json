@@ -37,5 +37,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "typeorm": "^0.2.37"
+  },
+  "jest": {
+    "testResultsProcessor": "./node_modules/jest-junit-reporter"
   }
 }
